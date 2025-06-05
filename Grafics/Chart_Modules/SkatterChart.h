@@ -8,7 +8,7 @@
 class SkatterChart:public IChart
 {
 public:
-    void Draw(QList<dataPoint> data, QtCharts::QChartView* chartView) override;
+    void Draw(QList<dataPoint> data, QtCharts::QChartView* chart, bool isMonochrome) override;
 };
 
 #endif // SKATTERCHART_H

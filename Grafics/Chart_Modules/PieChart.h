@@ -8,7 +8,7 @@
 class PieChart:public IChart
 {
 public:
-    void Draw(QList<dataPoint> data, QtCharts::QChartView *chart) override;
+    void Draw(QList<dataPoint> data, QtCharts::QChartView* chart, bool isMonochrome) override;
 };
 
 #endif // PIECHART_H

@@ -9,7 +9,7 @@
 class BarChart:public IChart
 {
 public:
-    void Draw(QList<dataPoint> data, QtCharts::QChartView* chartView) override;
+    void Draw(QList<dataPoint> data, QtCharts::QChartView* chart, bool isMonochrome) override;
 };
 
 #endif // BARCHART_H

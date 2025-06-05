@@ -2,7 +2,7 @@
 #include <QtCharts>
 #include <QPainter>
 
-void PieChart::Draw(QList<dataPoint> data, QtCharts::QChartView* chartView)
+void PieChart::Draw(QList<dataPoint> data, QtCharts::QChartView* chartView, bool isMonochrome)
 {
     double totalValue = std::accumulate(data.begin(), data.end(), 0.0,
                                         [](double sum, const dataPoint& p) { return sum + p.m_value; });

@@ -7,7 +7,7 @@
 class IChart{
 public:
     virtual ~IChart()=default;
-    virtual void Draw(QList<dataPoint> data, QtCharts::QChartView *chart)=0;
+    virtual void Draw(QList<dataPoint> data, QtCharts::QChartView* chart, bool isMonochrome) = 0;
 };
 
 #endif // ICHART_H

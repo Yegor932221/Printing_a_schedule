@@ -4,7 +4,7 @@
 #include <QRandomGenerator>
 
 
-void SkatterChart::Draw(QList<dataPoint> data, QtCharts::QChartView* chartView)
+void SkatterChart::Draw(QList<dataPoint> data, QtCharts::QChartView* chartView, bool isMonochrome)
 {
     qDebug() << "SkatterChart::Draw START";
 

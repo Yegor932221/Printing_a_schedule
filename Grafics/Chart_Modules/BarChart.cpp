@@ -7,7 +7,7 @@
 #include <algorithm>
 
 
-void BarChart::Draw(QList<dataPoint> data, QtCharts::QChartView* chartView)
+void BarChart::Draw(QList<dataPoint> data, QtCharts::QChartView* chartView, bool isMonochrome)
 {
     qDebug() << "BarChart::Draw (Grouped by Date, Time Slots in BarSets) START";
 
@@ -111,19 +111,29 @@ void BarChart::Draw(QList<dataPoint> data, QtCharts::QChartView* chartView)
             series->append(bs);
         }
 
-
-        QList<QColor> slotColors ={Qt::red, Qt::green, Qt::blue, Qt::cyan,
-            Qt::magenta, Qt::yellow, Qt::darkRed, Qt::darkGreen, Qt::darkBlue,
-            Qt::darkCyan, Qt::darkMagenta, Qt::darkYellow, Qt::gray, Qt::lightGray,
-            Qt::darkGray,   Qt::black, QColor(255, 165, 0), QColor(128, 0, 128), QColor(75, 0, 130),
-            QColor(165, 42, 42),QColor(255, 192, 203), QColor(0, 128, 128),  QColor(128, 128, 0),  QColor(210, 105, 30)
-        };;
-
-        for(int i=0; i < barSets.size() && i < slotColors.size(); ++i) {
-            if(barSets[i]) barSets[i]->setColor(slotColors[i]);
+        if (isMonochrome) {
+            // Логика для чёрно-белого режима
+            for(int i = 0; i < barSets.size(); ++i) {
+                if(barSets[i]) {
+                    // Используем оттенки серого
+                    int grayValue = 50 + (150 * i / barSets.size());
+                    barSets[i]->setColor(QColor(grayValue, grayValue, grayValue));
+                    barSets[i]->setBorderColor(Qt::black);
+                }
+            }
         }
+        else {
+            QList<QColor> slotColors ={Qt::red, Qt::green, Qt::blue, Qt::cyan,
+                Qt::magenta, Qt::yellow, Qt::darkRed, Qt::darkGreen, Qt::darkBlue,
+                Qt::darkCyan, Qt::darkMagenta, Qt::darkYellow, Qt::gray, Qt::lightGray,
+                Qt::darkGray,   Qt::black, QColor(255, 165, 0), QColor(128, 0, 128), QColor(75, 0, 130),
+                QColor(165, 42, 42),QColor(255, 192, 203), QColor(0, 128, 128),  QColor(128, 128, 0),  QColor(210, 105, 30)
+            };;
 
-
+            for(int i=0; i < barSets.size() && i < slotColors.size(); ++i) {
+                if(barSets[i]) barSets[i]->setColor(slotColors[i]);
+            }
+        }
         series->setLabelsVisible(true);
         // series->setLabelsFormat("@value");
 
