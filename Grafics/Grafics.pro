@@ -9,6 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    AppController.cpp \
     Chart_Modules/BarChart.cpp \
     Chart_Modules/PieChart.cpp \
     Chart_Modules/SkatterChart.cpp \
@@ -18,6 +19,7 @@ SOURCES += \
     MainWindow.cpp
 
 HEADERS += \
+    AppController.h \
     Chart_Modules/BarChart.h \
     Chart_Modules/IChart.h \
     Chart_Modules/PieChart.h \
@@ -25,6 +27,7 @@ HEADERS += \
     Data_Modules/IDataReader.h \
     Data_Modules/JSONReader.h \
     Data_Modules/SQLReader.h \
+    IoCContainer.h \
     MainWindow.h \
 
 

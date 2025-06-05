@@ -1,39 +1,45 @@
-#include <QApplication>
-#include <QWidget>
-#include <QVBoxLayout>
-#include <QtCharts/QChartView>
-#include <QDebug>
-#include "Chart_Modules/BarChart.h"
+#include "mainwindow.h"
+#include "AppController.h"
+#include "IoCContainer.h"
+
+// Подключаем все наши реализации
+#include "Data_Modules/JSONReader.h"
 #include "Data_Modules/SQLReader.h"
+#include "Chart_Modules/BarChart.h"
 #include "Chart_Modules/PieChart.h"
 #include "Chart_Modules/SkatterChart.h"
 
+#include <QApplication>
+#include <memory>
+
+// Функция для регистрации всех наших сервисов
+void registerServices() {
+    auto& ioc = IoCContainer::instance();
+
+    // Регистрируем читателей
+    ioc.registerService<IDataReader>("json_reader", std::make_shared<JSONReader>());
+    ioc.registerService<IDataReader>("sql_reader", std::make_shared<SQLReader>());
+
+    // Регистрируем отрисовщики графиков
+    ioc.registerService<IChart>("barchart", std::make_shared<BarChart>());
+    ioc.registerService<IChart>("piechart", std::make_shared<PieChart>());
+    ioc.registerService<IChart>("scatterchart", std::make_shared<SkatterChart>());
+}
+
+
 int main(int argc, char *argv[])
 {
-    QApplication app(argc, argv);
+    QApplication a(argc, argv);
 
-    qDebug() << "Чтение данных...";
-    SQLReader reader;
-    //QList<dataPoint> data_base = reader.DataRead("C:/Users/Yegor/TRPO/Printing_a_schedule/InputData/HUMIDITY_MOSCOW.sqlite");
-    //QList<dataPoint> data_base = reader.DataRead("C:\\Users\\Yegor\\TRPO\\Printing_a_schedule\\InputData\\BLOOD_SUGAR.sqlite");
-    //QList<dataPoint> data_base = reader.DataRead("C:\\Users\\Yegor\\TRPO\\Printing_a_schedule\\InputData\\NORDPOOL_PRICES.sqlite");
-    QList<dataPoint> data_base = reader.DataRead("C:\\Users\\Yegor\\TRPO\\Printing_a_schedule\\InputData\\PRICES_NATURAL_GAS_USD.sqlite");
+    // 1. Зарегистрировать все сервисы в IoC-контейнере
+    registerServices();
 
-    QtCharts::QChartView *chartView = new QtCharts::QChartView();
-    chartView->setRenderHint(QPainter::Antialiasing);
+    // 2. Создать Контроллер
+    AppController controller;
 
-    //PieChart chart;
-    SkatterChart chart;
-    //BarChart chart;
-    chart.Draw(data_base, chartView);
+    // 3. Создать главное окно (View) и передать ему контроллер
+    MainWindow w(&controller);
+    w.show();
 
-    // Главное окно
-    QWidget *window = new QWidget;
-    QVBoxLayout *layout = new QVBoxLayout(window);
-    layout->addWidget(chartView);
-    window->setLayout(layout);
-    window->resize(800, 600);
-    window->show();
-
-    return app.exec();
+    return a.exec();
 }
