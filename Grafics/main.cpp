@@ -3,9 +3,10 @@
 #include <QVBoxLayout>
 #include <QtCharts/QChartView>
 #include <QDebug>
-#include "BarChart.h"
+#include "Chart_Modules/BarChart.h"
 #include "Data_Modules/SQLReader.h"
-#include "PieChart.h"
+#include "Chart_Modules/PieChart.h"
+#include "Chart_Modules/SkatterChart.h"
 
 int main(int argc, char *argv[])
 {
@@ -14,14 +15,16 @@ int main(int argc, char *argv[])
     qDebug() << "Чтение данных...";
     SQLReader reader;
     //QList<dataPoint> data_base = reader.DataRead("C:/Users/Yegor/TRPO/Printing_a_schedule/InputData/HUMIDITY_MOSCOW.sqlite");
-    QList<dataPoint> data_base = reader.DataRead("C:\\Users\\Yegor\\TRPO\\Printing_a_schedule\\InputData\\BLOOD_SUGAR.sqlite");
+    //QList<dataPoint> data_base = reader.DataRead("C:\\Users\\Yegor\\TRPO\\Printing_a_schedule\\InputData\\BLOOD_SUGAR.sqlite");
     //QList<dataPoint> data_base = reader.DataRead("C:\\Users\\Yegor\\TRPO\\Printing_a_schedule\\InputData\\NORDPOOL_PRICES.sqlite");
-    //QList<dataPoint> data_base = reader.DataRead("C:\\Users\\Yegor\\TRPO\\Printing_a_schedule\\InputData\\PRICES_NATURAL_GAS_USD.sqlite");
+    QList<dataPoint> data_base = reader.DataRead("C:\\Users\\Yegor\\TRPO\\Printing_a_schedule\\InputData\\PRICES_NATURAL_GAS_USD.sqlite");
 
     QtCharts::QChartView *chartView = new QtCharts::QChartView();
     chartView->setRenderHint(QPainter::Antialiasing);
 
-    BarChart chart;
+    //PieChart chart;
+    SkatterChart chart;
+    //BarChart chart;
     chart.Draw(data_base, chartView);
 
     // Главное окно
