@@ -40,4 +40,5 @@
 3.  **Соберите и запустите проект:**
 
 ## UML
-![Grafics drawio](https://github.com/user-attachments/assets/25b87c02-5942-4915-8a36-3af4f9516765)
+![Grafics drawio](https://github.com/user-attachments/assets/752b6903-e18c-4640-a2d3-e456659d0bb7)
+
