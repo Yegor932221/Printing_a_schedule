@@ -3,10 +3,10 @@
 
 #include <QObject>
 #include <QList>
-#include "Data_Modules/IDataReader.h" // Убедитесь, что этот путь правильный
+#include "Data_Modules/IDataReader.h"
 #include <QtCharts/QChartView>
 
-// ...
+
 
 class AppController : public QObject {
     Q_OBJECT
