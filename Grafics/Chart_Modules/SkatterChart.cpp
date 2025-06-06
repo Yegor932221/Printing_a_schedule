@@ -90,7 +90,8 @@ void SkatterChart::Draw(QList<dataPoint> data, QtCharts::QChartView* chartView, 
         series->setName("Data Points");
         series->setMarkerShape(QtCharts::QScatterSeries::MarkerShapeCircle);
         series->setMarkerSize(4.0);
-        series->setColor(QColor(30, 144, 255));
+        if(isMonochrome) series->setColor(Qt::black);
+        else series->setColor(QColor(30, 144, 255));
         series->setBorderColor(Qt::black);
         for (const auto& point : validData) {
             series->append(static_cast<double>(point.m_date.toMSecsSinceEpoch()), point.m_value);
