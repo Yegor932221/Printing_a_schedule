@@ -32,13 +32,12 @@ private slots:
     void on_file_activated(const QModelIndex &index);
 
 private:
-    void setupUiLayout(); // Метод для создания интерфейса
-    void setupConnections(); // Метод для установки соединений
+    void setupUiLayout();
+    void setupConnections(); // Метод для коннектов
 
     Ui::MainWindow *ui;
-    AppController* m_controller; // Указатель на контроллер
+    AppController* m_controller;
 
-    // Элементы интерфейса
     QFileSystemModel *m_dirModel;
     QFileSystemModel *m_fileModel;
     QTreeView *m_treeView;

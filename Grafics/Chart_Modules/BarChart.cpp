@@ -141,7 +141,7 @@ void BarChart::Draw(QList<dataPoint> data, QtCharts::QChartView* chartView, bool
         QScopedPointer<QtCharts::QChart> chartObject(new QtCharts::QChart());
         QtCharts::QBarSeries* seriesPtr = series.take(); // QScopedPointer отдает владение
         chartObject->addSeries(seriesPtr); // chartObject становится родителем seriesPtr
-        chartObject->setTitle("Data by Date and Time Slot");
+        chartObject->setTitle(QString("Bar Chart for %1 values").arg(data.size()));
 
 
         chartObject->legend()->setVisible(true);

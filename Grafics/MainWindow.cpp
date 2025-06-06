@@ -25,7 +25,7 @@ MainWindow::MainWindow(AppController* controller, QWidget *parent)
     setupUiLayout();
     setupConnections();
 
-    // Начальная настройка
+
     m_controller->setChartView(m_chartView); // Сообщаем контроллеру, где рисовать
 
     // Устанавливаем курсор в домашнюю директорию при старте
@@ -45,7 +45,7 @@ void MainWindow::setupUiLayout() {
     this->setGeometry(100, 100, 1600, 800);
     this->setStatusBar(new QStatusBar(this));
 
-    // 1. Модели файловой системы
+    // Модели файловой системы
     QString homePath = QDir::homePath();
     m_dirModel = new QFileSystemModel(this);
     m_dirModel->setFilter(QDir::NoDotAndDotDot | QDir::AllDirs);
@@ -58,7 +58,6 @@ void MainWindow::setupUiLayout() {
     m_fileModel->setNameFilterDisables(false); // Не скрывать файлы, которые не соответствуют фильтру
     m_fileModel->setRootPath(homePath);
 
-    // 2. Левая панель (выбор файла)
     m_treeView = new QTreeView();
     m_treeView->setModel(m_dirModel);
     m_treeView->expandToDepth(0);
@@ -75,7 +74,6 @@ void MainWindow::setupUiLayout() {
     fileBrowserSplitter->setStretchFactor(0, 1);
     fileBrowserSplitter->setStretchFactor(1, 2);
 
-    // 3. Правая панель (график и управление)
     QWidget* chartPanel = new QWidget();
     QVBoxLayout* chartLayout = new QVBoxLayout(chartPanel);
 
@@ -100,7 +98,7 @@ void MainWindow::setupUiLayout() {
     chartLayout->addWidget(m_chartView);
     chartPanel->setLayout(chartLayout);
 
-    // 4. Главный сплиттер
+    //Главный сплиттер
     QSplitter* mainSplitter = new QSplitter(Qt::Horizontal, this);
     mainSplitter->addWidget(fileBrowserSplitter);
     mainSplitter->addWidget(chartPanel);

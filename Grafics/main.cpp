@@ -12,7 +12,7 @@
 #include <QApplication>
 #include <memory>
 
-// Функция для регистрации всех наших сервисов
+
 void registerServices() {
     auto& ioc = IoCContainer::instance();
 
@@ -31,13 +31,12 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    // 1. Зарегистрировать все сервисы в IoC-контейнере
+    // Зарегистрировать все сервисы в IoC-контейнере
     registerServices();
 
-    // 2. Создать Контроллер
+
     AppController controller;
 
-    // 3. Создать главное окно (View) и передать ему контроллер
     MainWindow w(&controller);
     w.show();
 

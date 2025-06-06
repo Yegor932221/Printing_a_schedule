@@ -101,7 +101,7 @@ void SkatterChart::Draw(QList<dataPoint> data, QtCharts::QChartView* chartView, 
         //Добавление серии в график и настройка графика
         QtCharts::QAbstractSeries* seriesPtr = series.take();
         chartObject->addSeries(seriesPtr);
-        chartObject->setTitle("Scatter Plot of Data");
+        chartObject->setTitle(QString("Skatter Chart for %1 values").arg(data.size()));;
         chartObject->legend()->setVisible(true);
         chartObject->legend()->setAlignment(Qt::AlignBottom);
         qDebug() << "SkatterChart::Draw: Series added to chart.";
