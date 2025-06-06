@@ -9,7 +9,7 @@
 
 using namespace std;
 
-// Ваши интерфейсы и классы
+
 class IProcessor {
 public:
     virtual ~IProcessor() = default;
@@ -53,7 +53,7 @@ public:
     }
 };
 
-// IOC Container (как у вас было)
+
 class IOCContainer {
     static int s_nextTypeId;
 
@@ -116,7 +116,7 @@ public:
 
 int IOCContainer::s_nextTypeId = 115094801;
 
-// Пример использования
+
 int main(int argc, char *argv[]) {
     QCoreApplication a(argc, argv);
     IOCContainer container;

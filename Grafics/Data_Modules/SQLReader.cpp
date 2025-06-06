@@ -49,9 +49,6 @@ QList<dataPoint> SQLReader::DataRead(const QString& source)
         QString timeStr = query.value("Time").toString();
         double value = query.value("Value").toDouble();
 
-        // Обрабатываем оба формата:
-        //  "26.04.2010 100" (дата + минуты)
-        //  "31.12.2009 18:00" (дата + время)
         QDateTime dateTime;
 
         if (timeStr.contains(":")) {
@@ -71,8 +68,6 @@ QList<dataPoint> SQLReader::DataRead(const QString& source)
 
         if (dateTime.isValid()) {
             data_base.append(dataPoint(dateTime, value));
-//            qDebug() << "Time:" << dateTime.toString("dd.MM.yyyy HH:mm")
-//                     << "Value:" << value;
         } else {
             qDebug() << "Не удалось разобрать время:" << timeStr;
         }
