@@ -1,0 +1,100 @@
+
+Thread 6 (Thread 11980.0x130c):
+#0  0x00007ffac74d2fc4 in ntdll!ZwWaitForWorkViaWorkerFactory () from C:\Windows\SYSTEM32\ntdll.dll
+No symbol table info available.
+#1  0x00007ffac746537e in ntdll!RtlClearThreadWorkOnBehalfTicket () from C:\Windows\SYSTEM32\ntdll.dll
+No symbol table info available.
+#2  0x00007ffac6c5257d in KERNEL32!BaseThreadInitThunk () from C:\Windows\System32\kernel32.dll
+No symbol table info available.
+#3  0x00007ffac748aa58 in ntdll!RtlUserThreadStart () from C:\Windows\SYSTEM32\ntdll.dll
+No symbol table info available.
+#4  0x0000000000000000 in ?? ()
+No symbol table info available.
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+
+Thread 5 (Thread 11980.0x73c):
+#0  0x00007ffac74d2fc4 in ntdll!ZwWaitForWorkViaWorkerFactory () from C:\Windows\SYSTEM32\ntdll.dll
+No symbol table info available.
+#1  0x00007ffac746537e in ntdll!RtlClearThreadWorkOnBehalfTicket () from C:\Windows\SYSTEM32\ntdll.dll
+No symbol table info available.
+#2  0x00007ffac6c5257d in KERNEL32!BaseThreadInitThunk () from C:\Windows\System32\kernel32.dll
+No symbol table info available.
+#3  0x00007ffac748aa58 in ntdll!RtlUserThreadStart () from C:\Windows\SYSTEM32\ntdll.dll
+No symbol table info available.
+#4  0x0000000000000000 in ?? ()
+No symbol table info available.
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+
+Thread 4 (Thread 11980.0x1364):
+#0  0x00007ffac74d2fc4 in ntdll!ZwWaitForWorkViaWorkerFactory () from C:\Windows\SYSTEM32\ntdll.dll
+No symbol table info available.
+#1  0x00007ffac746537e in ntdll!RtlClearThreadWorkOnBehalfTicket () from C:\Windows\SYSTEM32\ntdll.dll
+No symbol table info available.
+#2  0x00007ffac6c5257d in KERNEL32!BaseThreadInitThunk () from C:\Windows\System32\kernel32.dll
+No symbol table info available.
+#3  0x00007ffac748aa58 in ntdll!RtlUserThreadStart () from C:\Windows\SYSTEM32\ntdll.dll
+No symbol table info available.
+#4  0x0000000000000000 in ?? ()
+No symbol table info available.
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+
+Thread 3 (Thread 11980.0x1e70):
+#0  0x00007ffac74d2fc4 in ntdll!ZwWaitForWorkViaWorkerFactory () from C:\Windows\SYSTEM32\ntdll.dll
+No symbol table info available.
+#1  0x00007ffac746537e in ntdll!RtlClearThreadWorkOnBehalfTicket () from C:\Windows\SYSTEM32\ntdll.dll
+No symbol table info available.
+#2  0x00007ffac6c5257d in KERNEL32!BaseThreadInitThunk () from C:\Windows\System32\kernel32.dll
+No symbol table info available.
+#3  0x00007ffac748aa58 in ntdll!RtlUserThreadStart () from C:\Windows\SYSTEM32\ntdll.dll
+No symbol table info available.
+#4  0x0000000000000000 in ?? ()
+No symbol table info available.
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+
+Thread 2 (Thread 11980.0x104):
+#0  0x00007ffac74d2fc4 in ntdll!ZwWaitForWorkViaWorkerFactory () from C:\Windows\SYSTEM32\ntdll.dll
+No symbol table info available.
+#1  0x00007ffac746537e in ntdll!RtlClearThreadWorkOnBehalfTicket () from C:\Windows\SYSTEM32\ntdll.dll
+No symbol table info available.
+#2  0x00007ffac6c5257d in KERNEL32!BaseThreadInitThunk () from C:\Windows\System32\kernel32.dll
+No symbol table info available.
+#3  0x00007ffac748aa58 in ntdll!RtlUserThreadStart () from C:\Windows\SYSTEM32\ntdll.dll
+No symbol table info available.
+#4  0x0000000000000000 in ?? ()
+No symbol table info available.
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+
+Thread 1 (Thread 11980.0x878):
+#0  0x00000000017601e7 in QGraphicsWidget::resize(QSizeF const&) () from C:\Qt\5.15.2\mingw81_64\bin\Qt5Widgets.dll
+No symbol table info available.
+#1  0x000000006c60e219 in QtCharts::QChartViewPrivate::resize() () from C:\Qt\5.15.2\mingw81_64\bin\Qt5Charts.dll
+No symbol table info available.
+#2  0x000000000040182b in BarChart::Draw (this=0xbafce8, data=..., chartView=0xbff3f0) at ..\Grafics\BarChart.cpp:29
+        oldSeriesList = {<QListSpecialMethods<QtCharts::QAbstractSeries*>> = {<No data fields>}, {p = {static shared_null = {ref = {atomic = {_q_value = {<std::__atomic_base<int>> = {static _S_alignment = 4, _M_i = -1}, static is_always_lock_free = true}}}, alloc = 0, begin = 0, end = 0, array = {0x0}}, d = 0x40000062}, d = 0x40000062}}
+        oldAxesList = {<QListSpecialMethods<QtCharts::QAbstractAxis*>> = {<No data fields>}, {p = {static shared_null = {ref = {atomic = {_q_value = {<std::__atomic_base<int>> = {static _S_alignment = 4, _M_i = -1}, static is_always_lock_free = true}}}, alloc = 0, begin = 0, end = 0, array = {0x0}}, d = 0x475d6d0}, d = 0x475d6d0}}
+        __PRETTY_FUNCTION__ = "virtual void BarChart::Draw(QList<dataPoint>, QtCharts::QChartView*)"
+        oldChart = 0x475f6e0
+        validData = {<QListSpecialMethods<dataPoint>> = {<No data fields>}, {p = {static shared_null = {ref = {atomic = {_q_value = {<std::__atomic_base<int>> = {static _S_alignment = 4, _M_i = -1}, static is_always_lock_free = true}}}, alloc = 0, begin = 0, end = 0, array = {0x0}}, d = 0x475d6cf}, d = 0x475d6cf}}
+        categories = {<QList<QString>> = {<QListSpecialMethods<QString>> = {<No data fields>}, {p = {static shared_null = {ref = {atomic = {_q_value = {<std::__atomic_base<int>> = {static _S_alignment = 4, _M_i = -1}, static is_always_lock_free = true}}}, alloc = 0, begin = 0, end = 0, array = {0x0}}, d = 0x9}, d = 0x9}}, <No data fields>}
+        minVal = 2.0926718605098715e-317
+        maxVal = 6.0544622402963047e-317
+        firstValidPointFound = false
+        chart = 0x44c8190
+#3  0x000000000040618a in qMain (argc=1, argv=0xce6250) at ..\Grafics\main.cpp:25
+        app = <incomplete type>
+        __PRETTY_FUNCTION__ = "int qMain(int, char**)"
+        reader = {<IDataReader> = {_vptr.IDataReader = 0x413c00 <vtable for SQLReader+16>}, <No data fields>}
+        data_base = {<QListSpecialMethods<dataPoint>> = {<No data fields>}, {p = {static shared_null = {ref = {atomic = {_q_value = {<std::__atomic_base<int>> = {static _S_alignment = 4, _M_i = -1}, static is_always_lock_free = true}}}, alloc = 0, begin = 0, end = 0, array = {0x0}}, d = 0x44c8190}, d = 0x44c8190}}
+        chartView = 0xbff3f0
+        chart = {<IChart> = {_vptr.IChart = 0x413ba0 <vtable for BarChart+16>}, <No data fields>}
+        window = 0xffffffffffffffff
+        layout = 0xce6290
+#4  0x000000000040823d in WinMain () at qtmain_win.cpp:97
+        argc = 1
+        argvW = 0xd7e880
+        argv = 0xce6250
+        exitCode = <optimized out>
+#5  0x00000000004013c7 in __tmainCRTStartup ()
+No symbol table info available.
+#6  0x00000000004014cb in WinMainCRTStartup ()
+No symbol table info available.
