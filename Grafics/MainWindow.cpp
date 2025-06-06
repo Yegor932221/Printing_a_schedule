@@ -14,6 +14,7 @@
 #include <QPushButton>
 #include <QtCharts/QChartView>
 #include<QLabel>
+#include<QMessageBox>
 
 MainWindow::MainWindow(AppController* controller, QWidget *parent)
     : QMainWindow(parent),
@@ -120,6 +121,7 @@ void MainWindow::setupConnections() {
     connect(m_chartTypeComboBox, &QComboBox::currentTextChanged, m_controller, &AppController::onChartTypeChanged);
     connect(m_monochromeCheckBox, &QCheckBox::toggled, m_controller, &AppController::onMonochromeToggled);
     connect(m_savePdfButton, &QPushButton::clicked, m_controller, &AppController::onSavePdfClicked);
+    connect(m_controller, &AppController::errorOccurred, this, &MainWindow::on_showError);
 }
 
 void MainWindow::on_directory_selectionChanged(const QItemSelection &selected, const QItemSelection &deselected)
@@ -140,4 +142,9 @@ void MainWindow::on_file_activated(const QModelIndex &index)
     this->statusBar()->showMessage("Загрузка файла: " + filePath);
     // Отправляем сигнал контроллеру
     m_controller->onFileSelected(filePath);
+}
+
+void MainWindow::on_showError(const QString& title, const QString& message)
+{
+    QMessageBox::critical(this, title, message);
 }

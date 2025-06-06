@@ -8,28 +8,24 @@
 
 QList<dataPoint> JSONReader::DataRead(const QString& source)
 {
+
     QList<dataPoint> result;
 
-    // Открываем файл
     QFile file(source);
     if (!file.open(QIODevice::ReadOnly)) {
-        qWarning() << "Не удалось открыть файл:" << file.errorString();
-            return result;
+        throw std::runtime_error(("Не удалось открыть файл: " + file.errorString()).toStdString());
     }
 
-    // Читаем и парсим JSON
     QJsonParseError parseError;
     QJsonDocument doc = QJsonDocument::fromJson(file.readAll(), &parseError);
     file.close();
 
     if (parseError.error != QJsonParseError::NoError) {
-        qWarning() << "Ошибка парсинга JSON:" << parseError.errorString();
-                                                               return result;
+        throw std::runtime_error(("Ошибка парсинга JSON: " + parseError.errorString()).toStdString());
     }
 
     if (!doc.isArray()) {
-        qWarning() << "JSON не содержит массив данных";
-        return result;
+        throw std::runtime_error("Ошибка формата: корневой элемент не является массивом.");
     }
 
     // Обрабатываем массив данных
@@ -66,6 +62,10 @@ QList<dataPoint> JSONReader::DataRead(const QString& source)
         } else {
             qWarning() << "Найдена запись с невалидным timestamp";
         }
+    }
+
+    if (result.isEmpty() && !jsonArray.isEmpty()) {
+        throw std::runtime_error("Файл содержит записи, но ни одна из них не была распознана. Проверьте формат полей 'Datetime' и 'Value'.");
     }
 
     return result;

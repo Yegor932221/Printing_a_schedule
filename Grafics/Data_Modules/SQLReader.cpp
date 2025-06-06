@@ -7,33 +7,42 @@
 
 QList<dataPoint> SQLReader::DataRead(const QString& source)
 {
-    QList<dataPoint> data_base;
-    QSqlDatabase bd = QSqlDatabase::addDatabase("QSQLITE");
+ QList<dataPoint> data_base;
+    QString connectionName = "connection_" + QFileInfo(source).fileName();
+    QSqlDatabase bd;
+
+    if (QSqlDatabase::contains(connectionName)) {
+        bd = QSqlDatabase::database(connectionName);
+    } else {
+        bd = QSqlDatabase::addDatabase("QSQLITE", connectionName);
+    }
+
     bd.setDatabaseName(source);
 
     if (!bd.open()) {
-        qDebug() << "Ошибка открытия БД:" << bd.lastError().text();
-        return data_base;
+        QString error = bd.lastError().text();
+        bd.close();
+        QSqlDatabase::removeDatabase(connectionName);
+        throw std::runtime_error(("Ошибка открытия БД: " + error).toStdString());
     }
 
-    // Получаем список таблиц (для диагностики)
     QStringList tables = bd.tables();
-    qDebug() << "Доступные таблицы:" << tables;
-
     if (tables.isEmpty()) {
-        qDebug() << "В базе данных нет таблиц!";
         bd.close();
-        return data_base;
+        QSqlDatabase::removeDatabase(connectionName);
+        throw std::runtime_error("Ошибка: в базе данных нет таблиц.");
     }
 
     QString tableName = tables.first();
     QSqlQuery query(bd);
 
     if (!query.exec(QString("SELECT Time, Value FROM %1").arg(tableName))) {
-        qDebug() << "Ошибка выполнения запроса:" << query.lastError().text();
+        QString error = query.lastError().text();
         bd.close();
-        return data_base;
+        QSqlDatabase::removeDatabase(connectionName);
+        throw std::runtime_error(("Ошибка выполнения запроса: " + error).toStdString());
     }
+
 
     while (query.next())
     {
@@ -70,5 +79,11 @@ QList<dataPoint> SQLReader::DataRead(const QString& source)
     }
 
     bd.close();
+    QSqlDatabase::removeDatabase(connectionName);
+
+    if (data_base.isEmpty() && query.size() != 0) { // если запрос вернул строки, но мы ничего не распарсили
+        throw std::runtime_error("Данные не распознаны. Проверьте имена столбцов ('Time', 'Value') и формат данных в таблице '" + tableName.toStdString() + "'.");
+    }
+
     return data_base;
 }

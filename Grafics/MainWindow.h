@@ -30,7 +30,7 @@ private slots:
     void on_directory_selectionChanged(const QItemSelection &selected, const QItemSelection &deselected);
     // Слот для выбора файла в таблице
     void on_file_activated(const QModelIndex &index);
-
+    void on_showError(const QString& title, const QString& message);
 private:
     void setupUiLayout();
     void setupConnections(); // Метод для коннектов

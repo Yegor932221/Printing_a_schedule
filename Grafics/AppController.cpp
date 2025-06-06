@@ -20,6 +20,8 @@ void AppController::onFileSelected(const QString& filePath) {
     }
     qDebug() << "Controller: File selected" << filePath;
 
+    m_currentData.clear();
+
     QFileInfo fileInfo(filePath);
     QString extension = fileInfo.suffix().toLower();
     std::string readerKey;
@@ -29,9 +31,8 @@ void AppController::onFileSelected(const QString& filePath) {
     } else if (extension == "sqlite" || extension == "db") {
         readerKey = "sql_reader";
     } else {
-        qWarning() << "Unsupported file type:" << extension;
-        m_currentData.clear();
-        updateChart(); // Очищаем график
+        emit errorOccurred("Ошибка чтения файла", "Неподдерживаемый тип файла: ." + extension);
+        updateChart();
         return;
     }
 
@@ -40,8 +41,9 @@ void AppController::onFileSelected(const QString& filePath) {
         m_currentData = dataReader->DataRead(filePath);
         qDebug() << "Controller: Data loaded," << m_currentData.size() << "points.";
     } catch (const std::exception& e) {
-        qCritical() << "Controller: Failed to read data -" << e.what();
-        m_currentData.clear();
+        // Ловим любое стандартное исключение
+        qCritical() << "Controller: An error occurred -" << e.what();
+        emit errorOccurred("Ошибка чтения файла", QString::fromStdString(e.what()));
     }
 
     updateChart();
